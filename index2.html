@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0026)http://kalkulacka3.m24.sk/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    	<script></script>
+    	<title></title>
+
+        <style>
+            .standby-calculator-ct {
+                width:800px;
+            }
+
+            .standby-calculator-ct * {
+                font-family: Tahoma, Verdana, Arial;
+                font-size:14px;
+            }
+
+            .standby-calculator-ct .standby-calculator {
+                border-spacing: 0;
+                border-collapse: collapse;
+                width:100%;
+            }
+            .standby-calculator-ct .standby-calculator th {
+                padding: 10px;
+                font-weight:bold;
+                background: #CBABE0;
+                text-align: center;
+            }
+
+            .standby-calculator-ct .standby-calculator tr.tb-head {
+                border-bottom: 2px solid black;
+            }
+
+            .standby-calculator-ct .standby-calculator tr.tb-foot {
+                border-top: 2px solid black;
+            }
+
+            .standby-calculator-ct .standby-calculator td {
+                padding: 10px;
+                text-align: center;
+            }
+            .standby-calculator-ct .standby-calculator tr:nth-child(odd) {
+                background: #FDE9B5;
+            }
+
+            .standby-calculator-ct .standby-calculator td.td-name {
+                text-align: left;
+            }
+
+            .standby-calculator-ct .standby-calculator .total-summary {
+                text-align: right;
+            }
+
+            /* The switch - the box around the slider */
+            .standby-calculator-ct .switch {
+              position: relative;
+              display: inline-block;
+              width: 45px;
+              height: 23px;
+            }
+
+            /* Hide default HTML checkbox */
+            .standby-calculator-ct .switch input {display:none;}
+
+            /* The slider */
+            .standby-calculator-ct .slider {
+              position: absolute;
+              cursor: pointer;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: #D0B3E3;
+              -webkit-transition: .4s;
+              transition: .4s;
+            }
+
+            .standby-calculator-ct .slider:before {
+              position: absolute;
+              content: "";
+              height: 16px;
+              width: 16px;
+              left: 4px;
+              bottom: 4px;
+              background-color: white;
+              -webkit-transition: .4s;
+              transition: .4s;
+            }
+
+            .standby-calculator-ct input:checked + .slider {
+              background-color: #951B81;
+            }
+
+            .standby-calculator-ct input:focus + .slider {
+              box-shadow: 0 0 1px #951B81;
+            }
+
+            .standby-calculator-ct input:checked + .slider:before {
+              -webkit-transform: translateX(21px);
+              -ms-transform: translateX(21px);
+              transform: translateX(21px);
+            }
+
+            /* Rounded sliders */
+            .standby-calculator-ct .slider.round {
+              border-radius: 16px;
+            }
+
+            .standby-calculator-ct .slider.round:before {
+              border-radius: 50%;
+            }
+        </style>
+	</head>
+	<body>
+        <div class="standby-calculator-ct">
+            <table class="standby-calculator">
+                <tbody><tr class="tb-head">
+                    <th>Prepnite spotrebič do<br>stand by režimu</th>
+                    <th style="text-align:left;">Spotrebič</th>
+                    <th>Spotreba energie<br>
+                    kW /  pracovný rok*</th>
+                    <th>Cena energie<br> 
+                    Euro / pracovný rok*</th>
+                </tr><tr class="tb-item" rel="0"><td><label class="switch"><input type="checkbox"><div class="slider round"></div></label></td><td class="td-name">Počítač v spánku</td><td class="td-kw">38.4 kW</td><td class="td-price"></td></tr><tr class="tb-item" rel="1"><td><label class="switch"><input type="checkbox"><div class="slider round"></div></label></td><td class="td-name">Notebook v spánku</td><td class="td-kw">28.8 kW</td><td class="td-price"></td></tr><tr class="tb-item" rel="2"><td><label class="switch"><input type="checkbox"><div class="slider round"></div></label></td><td class="td-name">Notebook vypnutý</td><td class="td-kw">16 kW</td><td class="td-price"></td></tr><tr class="tb-item" rel="3"><td><label class="switch"><input type="checkbox"><div class="slider round"></div></label></td><td class="td-name">WiFi router zapnutý</td><td class="td-kw">36.3 kW</td><td class="td-price"></td></tr><tr class="tb-item" rel="4"><td><label class="switch"><input type="checkbox"><div class="slider round"></div></label></td><td class="td-name">Satelitný prijímač vypnutý</td><td class="td-kw">30.9 kW</td><td class="td-price"></td></tr><tr class="tb-item" rel="5"><td><label class="switch"><input type="checkbox"><div class="slider round"></div></label></td><td class="td-name">Herná konzola</td><td class="td-kw">42.6 kW</td><td class="td-price"></td></tr><tr class="tb-item" rel="6"><td><label class="switch"><input type="checkbox"><div class="slider round"></div></label></td><td class="td-name">Televízia v spánku</td><td class="td-kw">13.9 kW</td><td class="td-price"></td></tr><tr class="tb-item" rel="7"><td><label class="switch"><input type="checkbox"><div class="slider round"></div></label></td><td class="td-name">Mikrovlnka</td><td class="td-kw">5.3 kW</td><td class="td-price"></td></tr>
+                <tr class="tb-foot">
+                    <th class="total-summary" colspan="2">Spolu:</th>
+                    <th class="total-kw">0 kW</th>
+                    <th class="total-eur">0 €</th>
+                </tr>
+            </tbody></table>
+        </div>
+		<script src="./kalkulacka3.m24.sk_files/jquery.min.js.stiahnuť"></script>
+		<script src="./kalkulacka3.m24.sk_files/jquery-ui.js.stiahnuť"></script>
+		<script type="text/javascript">
+            var sbcalc = {
+                price: 0.1547619047619048,
+                items: [
+                    {on:false, name:'Počítač v spánku', kw:38.4},
+                    {on:false, name:'Notebook v spánku', kw:28.8},
+                    {on:false, name:'Notebook vypnutý', kw:16},
+                    {on:false, name:'WiFi router zapnutý', kw:36.3},
+                    {on:false, name:'Satelitný prijímač vypnutý', kw:30.9},
+                    {on:false, name:'Herná konzola', kw:42.6},
+					{on:false, name:'Televízia v spánku', kw:13.9},
+                    {on:false, name:'Mikrovlnka', kw:5.3}
+                ],
+                draw: {
+                    do: function(){
+                        this.clear();
+                        this.fill();
+                        this.calculate.all();
+                    },
+                    clear: function(){
+                        $('.standby-calculator .tb-item').remove();
+                    },
+                    fill: function(){
+                        var t = '';
+                        for(var a in sbcalc.items){
+                            t += '<tr class="tb-item" rel="'+a+'">';
+                            t += '<td><label class="switch"><input type="checkbox" '+(sbcalc.items[a].on ? 'checked="checked" ' : '')+'/><div class="slider round"></div></label></td>';
+                            t += '<td class="td-name">'+sbcalc.items[a].name+'</td>';
+                            t += '<td class="td-kw">'+this.format.kw(sbcalc.items[a].kw)+' kW</td>';
+                            t += '<td class="td-price">'+(sbcalc.items[a].on ? this.format.price(sbcalc.items[a].kw) : '')+'</td>';
+                            t += '</tr>';
+                        }
+                        $('.standby-calculator .tb-head').after(t);
+                    },
+                    calculate: {
+                        one: function(){
+
+                        },
+                        all: function(){
+                            var kw = 0;
+                            for(var a in sbcalc.items){
+                                kw += sbcalc.items[a].on ? sbcalc.items[a].kw : 0;
+                            }
+                            ;
+                            $('.standby-calculator .tb-foot .total-kw').text(sbcalc.draw.format.kw(kw)+' kW');
+                            $('.standby-calculator .tb-foot .total-eur').text(sbcalc.draw.format.price(kw));
+                        }
+                    },
+                    format: {
+                        kw: function(a){
+                            return Math.round(a*100)/100;
+                        },
+                        price: function(a){
+                            return (Math.round(a*sbcalc.price*100)/100) + ' €';
+                        }
+                    }
+                },
+                register: function(){
+                    $(document).on('change', '.standby-calculator .tb-item input[type="checkbox"]', function(e){
+                        var r = $(this).closest('.tb-item');
+                        var ch = $(this).is(':checked');
+                        var it = sbcalc.items[r.attr('rel')];
+                        it.on = ch;
+                        setTimeout(function(){
+                            $('.td-price', r).text(ch ? sbcalc.draw.format.price(it.kw) : '');
+                            sbcalc.draw.calculate.all();
+                        }, 20);
+                    });
+                },
+                init: function(){
+                    this.register();
+                    this.draw.do();
+                }
+            };
+
+            sbcalc.init();
+		</script>
+	
+
+
+</body></html>
