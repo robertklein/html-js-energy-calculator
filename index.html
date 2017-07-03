@@ -133,7 +133,7 @@
             var sbcalc = {
                 price: 12,
                 items: [
-                    {on:false, name:'Počítačový displej LCD', kw:0.3 },
+                    {on:false, name:'Počítačový displej LCD', kw:0.3},
                     {on:false, name:'Počítač, desktop', kw:3.6},
                     {on:false, name:'Počítač, notebook', kw:2.7},
                     {on:false, name:'TV Set-top box', kw:2.9},
@@ -170,7 +170,6 @@
                             for(var a in sbcalc.items){
                                 kw += sbcalc.items[a].on ? sbcalc.items[a].kw : 0;
                             }
-                            ;
                             $('.standby-calculator .tb-foot .total-kw').text(sbcalc.draw.format.kw(kw));
                             $('.standby-calculator .tb-foot .total-eur').text(sbcalc.draw.format.price(kw));
                         }
@@ -195,10 +194,19 @@
                             sbcalc.draw.calculate.all();
                         }, 20);
                     });
+                    $(document).on('change', '.standby-calculator .total-chb input[type="checkbox"]', function(e){
+                        var ch = $(this).is(':checked');
+                        for(var a in sbcalc.items){
+                            sbcalc.items[a].on = ch;
+                        }
+                        sbcalc.draw.do();
+                    });
                 },
                 init: function(){
                     this.register();
                     this.draw.do();
+                    delete this.init;
+                    return this;
                 }
             };
 
