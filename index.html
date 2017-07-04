@@ -22,9 +22,14 @@
             .standby-calculator-ct .standby-calculator th {
                 padding: 10px;
                 font-weight:bold;
-                background: #e2e2e2;
+                background: #CBABE0;
                 text-align: center;
             }
+
+            .standby-calculator-ct .standby-calculator th:nth-child(1) { width: 30%; }
+            .standby-calculator-ct .standby-calculator th:nth-child(2) { width: 25%; }
+            .standby-calculator-ct .standby-calculator th:nth-child(3) { width: 22.5%; }
+            .standby-calculator-ct .standby-calculator th:nth-child(4) { width: 22.5%; }
 
             .standby-calculator-ct .standby-calculator tr.tb-head {
                 border-bottom: 2px solid black;
@@ -39,7 +44,15 @@
                 text-align: center;
             }
             .standby-calculator-ct .standby-calculator tr:nth-child(odd) {
-                background: #f1f1f1;
+                background: #FDE9B5;
+            }
+
+            .standby-calculator-ct .standby-calculator tr:nth-child(even) td.td-kw {
+                background: #f2f2f2;
+            }
+
+            .standby-calculator-ct .standby-calculator tr:nth-child(odd) td.td-kw {
+                background: #e8c0ab;
             }
 
             .standby-calculator-ct .standby-calculator td.td-name {
@@ -69,7 +82,7 @@
               left: 0;
               right: 0;
               bottom: 0;
-              background-color: #ccc;
+              background-color: #D0B3E3;
               -webkit-transition: .4s;
               transition: .4s;
             }
@@ -87,11 +100,11 @@
             }
 
             .standby-calculator-ct input:checked + .slider {
-              background-color: #2196F3;
+              background-color: #951B81;
             }
 
             .standby-calculator-ct input:focus + .slider {
-              box-shadow: 0 0 1px #2196F3;
+              box-shadow: 0 0 1px #951B81;
             }
 
             .standby-calculator-ct input:checked + .slider:before {
@@ -108,19 +121,25 @@
             .standby-calculator-ct .slider.round:before {
               border-radius: 50%;
             }
+
+            .standby-calculator-ct .total-chb { position:relative; }
+            .standby-calculator-ct .total-chb .check-all-text { position:absolute; top:12px; left:15px; }
         </style>
 	</head>
 	<body>
         <div class="standby-calculator-ct">
             <table class="standby-calculator">
                 <tr class="tb-head">
-                    <th>Zapnutý v režime spánku<br/>Vypnutý zo zásuvky</th>
+                    <th>Prepnite spotrebič do<br />stand by režimu</th>
                     <th style="text-align:left;">Spotrebič</th>
-                    <th>Spotreba energie<br/>kW / týždeň</th>
-                    <th>Cena energie<br /> Euro / týždeň</th>
+                    <th>Spotreba energie<br />kW / pracovný rok*</th>
+                    <th>Cena energie<br />Euro / pracovný rok*</th>
                 </tr>
                 <tr class="tb-foot">
-                    <th class="total-chb"><label class="switch"><input type="checkbox" /><div class="slider round"></div></label></th>
+                    <th class="total-chb">
+                        <span class="check-all-text">Všetky:</span>
+                        <label class="switch"><input type="checkbox" /><div class="slider round"></div></label>
+                    </th>
                     <th class="total-summary">Spolu:</th>
                     <th class="total-kw"></th>
                     <th class="total-eur"></th>
@@ -131,7 +150,7 @@
 		<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 		<script type="text/javascript">
             var sbcalc = {
-                price: 12,
+                price: 10.6666,
                 items: [
                     {on:false, name:'Počítačový displej LCD', kw:0.3},
                     {on:false, name:'Počítač, desktop', kw:3.6},
@@ -155,7 +174,7 @@
                             t += '<tr class="tb-item" rel="'+a+'">';
                             t += '<td><label class="switch"><input type="checkbox" '+(sbcalc.items[a].on ? 'checked="checked" ' : '')+'/><div class="slider round"></div></label></td>';
                             t += '<td class="td-name">'+sbcalc.items[a].name+'</td>';
-                            t += '<td class="td-kw">'+this.format.kw(sbcalc.items[a].kw)+'</td>';
+                            t += '<td class="td-kw">'+(sbcalc.items[a].on ? this.format.kw(sbcalc.items[a].kw) : '')+'</td>';
                             t += '<td class="td-price">'+(sbcalc.items[a].on ? this.format.price(sbcalc.items[a].kw) : '')+'</td>';
                             t += '</tr>';
                         }
@@ -190,6 +209,7 @@
                         var it = sbcalc.items[r.attr('rel')];
                         it.on = ch;
                         setTimeout(function(){
+                            $('.td-kw', r).text(ch ? sbcalc.draw.format.kw(it.kw) : '');
                             $('.td-price', r).text(ch ? sbcalc.draw.format.price(it.kw) : '');
                             sbcalc.draw.calculate.all();
                         }, 20);
